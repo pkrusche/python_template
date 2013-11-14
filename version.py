@@ -19,15 +19,15 @@ Setup:
 
 3. The version will be usable in a module like this:
 
-    import version
-    print version.__version__
+    # replace with your package name from setup.py
+    __version__ = ""
 
 """
 
-__version__ = "02ca151"
-__author__ = "Peter Krusche"
-__email__ = "pkrusche@illumina.com"
-__date__ = "Fri Nov 8 11:29:48 2013 +0000"
+__version__ = ""
+__author__ = ""
+__email__ = ""
+__date__ = ""
 
 
 import sys
@@ -39,6 +39,8 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser("Python versioning script")
+
+    python_executable = os.path.normpath(sys.executable).replace("\\", "/")
 
     parser.add_argument("--smudge", "-s", dest="smudge", action="store_true")
     parser.add_argument("--clean", "-c", dest="clean", action="store_true")
@@ -54,11 +56,14 @@ def main():
 
     if install:
         subprocess.check_call(["git", "config", "--local", "filter.versioning.smudge",
-                               "%s version.py --smudge" % sys.executable])
+                               "%s version.py --smudge" % python_executable])
         subprocess.check_call(["git", "config", "--local", "filter.versioning.clean",
-                               "%s version.py --clean" % sys.executable])
-        os.system("grep '^version\\.py filter=versioning$' .gitattributes || "
-                  "echo version.py filter=versioning >> .gitattributes")
+                               "%s version.py --clean" % python_executable])
+        try:
+            subprocess.check_call(["grep",  "^version.py filter=versioning",
+                                   ".gitattributes"])
+        except subprocess.CalledProcessError:
+            os.system("echo version.py filter=versioning >> .gitattributes")
 
         updates = """
 #!/bin/sh
@@ -68,7 +73,7 @@ PYTHON="%s"
 cat version.py | $PYTHON version.py --clean --smudge > __version_tmp.py
 mv __version_tmp.py version.py
 
-""" % sys.executable
+""" % python_executable
         pcohook = os.path.join(".git", "hooks", "post-commit")
         pcmhook = os.path.join(".git", "hooks", "post-checkout")
         if (os.path.exists(pcohook) or os.path.exists(pcmhook)) and\
