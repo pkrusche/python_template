@@ -17,6 +17,11 @@ Setup:
 
    Use a different version of python if necessary.
 
+3. The version will be usable in a module like this:
+
+    import version
+    print version.__version__
+
 """
 
 __version__ = "02ca151"
