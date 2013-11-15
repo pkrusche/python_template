@@ -38,10 +38,7 @@ How to Use
 1.  Read [TODO.rst](TODO.rst), [SPEC.rst](SPEC.rst), [index.rst](index.rst)
 2.  Look at the example code in lib, test, and bin
 3.  After cloning run this to enable the versioning hooks (after this, git checkout
-    should automatically update version.py):
-```bash
-python version.py --install
-```
+    should automatically update version.py): `python version.py --install`
 4.  To make documentation, run `make`, then check doc/html
 5.  To run unit tests, run `python setup.py test`
 6.  To install in development mode (useful when still changing code): `python setup.py build develop`
