@@ -55,9 +55,9 @@ def main():
     force = args.force
 
     if install:
-        subprocess.check_call(["git", "config", "--local", "filter.versioning.smudge",
+        subprocess.check_call(["git", "config", "filter.versioning.smudge",
                                "%s version.py --smudge" % python_executable])
-        subprocess.check_call(["git", "config", "--local", "filter.versioning.clean",
+        subprocess.check_call(["git", "config", "filter.versioning.clean",
                                "%s version.py --clean" % python_executable])
         try:
             subprocess.check_call(["grep",  "^version.py filter=versioning",
