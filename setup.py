@@ -9,11 +9,12 @@ setup(
     author='Peter Krusche',
     author_email='pkrusche@illumina.com',
     version=version.__version__,
-    packages=find_packages('src', exclude=["*.tests"]),
+    package_dir={'': 'lib', 'tests': 'tests'},
+    packages=find_packages('lib'),
     # This can be used to install scripts system-wide
     # Use with caution.
     # scripts=['bin/runme.py'],
-    #
+    # point to git repository?
     url='',
     # Pick a license
     license='MIT',
@@ -21,5 +22,7 @@ setup(
                 'Sphinx, unit tests and setuptools.',
 
     # add required packages
-    install_requires=[]
+    install_requires=[],
+    # point to the test suite
+    test_suite='tests'
 )

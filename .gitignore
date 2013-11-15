@@ -1,2 +1,6 @@
 *.pyc
 .idea
+doc/doctrees
+doc/html
+lib/template_project.egg-info
+lib/*.rst
