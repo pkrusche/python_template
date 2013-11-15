@@ -35,11 +35,13 @@ Subfolders are:
 How to Use
 ----------
 
-1.  Read [TODO.rst](TODO.rst), [SPEC.rst](SPEC.rst), [index.rst](index.rst)
-2.  Look at the example code in lib, test, and bin
-3.  After cloning run this to enable the versioning hooks (after this, git checkout
-    should automatically update version.py): `python version.py --install`
-4.  To make documentation, run `make`, then check doc/html
-5.  To run unit tests, run `python setup.py test`
+1.  After cloning run this to enable the versioning hooks (after this, git checkout
+    should automatically update version.py): `python version.py --install` -- you can
+    update the version number for the first time (and test the hook) by running: 
+    `sh .git/hooks/post-checkout`
+2.  Read [TODO.rst](TODO.rst), [SPEC.rst](SPEC.rst), [index.rst](index.rst)
+3.  Look at the example code in lib, test, and bin
+4.  To run unit tests, run `python setup.py test`
+5.  To make documentation, run `make`, then check doc/html
 6.  To install in development mode (useful when still changing code): `python setup.py build develop`
 7.  To install in system-wide: `python setup.py build install`
